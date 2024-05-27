@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login Page | Coding Vibess</title>
+  </head>
+
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form id="registerForm">
+          <h1>Create Account</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+          <span>or use your email for registeration</span>
+          <input type="text" placeholder="Username" name="username" required />
+          <input type="text" placeholder="Name" name="name" required />
+          <input type="password" placeholder="Password" name="password" required />
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+      <div class="form-container sign-in">
+        <form id="loginForm">
+          <h1>Sign In</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
+            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icon"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+          <span>or use your email password</span>
+          <input type="text" placeholder="Username" name="username" required />
+          <input type="password" placeholder="Password" name="password" required />
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+            <h1>Welcome Back!</h1>
+            <p>Enter your personal details to use all of site features</p>
+            <button class="hiddened" id="login">Sign In</button>
+          </div>
+          <div class="toggle-panel toggle-right">
+            <h1>Hello, Friend!</h1>
+            <p>
+              Register with your personal details to use all of site features
+            </p>
+            <button class="hiddened" id="register">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerActivities" > 
+      <div id="userActivities" class="hidden">
+
+        <section class="searchActivitySection">
+          <article class="searchSection">
+            <form id="searchForm">
+              <input type="text" id="searchInput" placeholder="search...">
+              <select id="searchCategory">
+                  <option value="title">Title</option>
+                  <option value="day">Day</option>
+              </select>
+              <button type="submit">
+                <img src="assets/search.png" alt="search">
+              </button>
+           </form>
+          </article>
+        </section>
+
+        <div class="container2">
+
+          <aside class="userProfil">
+            <h1>User Profile</h1>
+            <p id="userInfo"></p>
+            <form id="updateForm">
+              <input type="text" placeholder="Name" name="name" required />
+              <input type="password" placeholder="New Password" name="password" />
+              <button type="submit">Update</button>
+            </form>
+            <button id="logoutBtn">Logout</button>
+          </aside>
+      
+          
+  
+             <article class="form-body">
+                    <div class="form-items">
+                      <h3>Add Activity</h3>
+                      <p>Fill in the data below.</p>
+                      <form id="inputActivity">
+      
+                        <div class="col-md-12">
+                          <input id="inputActivityTitle" name="title" type="text" placeholder="Judul" required>
+                        </div>
+      
+                        <div class="col-md-12">
+                          <input id="inputActivityAuthor" name="information" type="text" placeholder="information">
+                        </div>
+      
+                        <div class="col-md-12">
+                          <input id="inputActivityDay" name="day" type="text" placeholder="Hari" required>
+                        </div>
+                        <div class="col-md-12">
+                          <input id="inputActivityYear" name="date" type="date">
+                        </div>
+                        <div class="col-md-12">
+                          <input id="inputActivityTime" name="time" type="time" required>
+                        </div>
+  
+                        <div class="form-check mv-up">
+                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                          <label class="form-check-label">I confirm that all data are correct</label>
+                        </div>
+                        <div class="form-button mv-up">
+                          <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </form>
+                   </div>
+                </article>
+        </div>
+        
+    
+    
+          <section class="activities">
+            <h2>Activity List</h2>
+            <div class="activityShelf">
+                <div class="activityList" id="getActivityResult">
+                    <article class="activityItem" id="activity1">
+                        <div class="bio">
+                            <h3>Title 1</h3>
+                            <p>Information 1</p>
+                            <p>Monday</p>
+                            <p>2024-05-27</p>
+                            <p>08:00 AM</p>
+                        </div>
+                        <div class="action">
+                            <button class="edit">
+                                <img src="assets/edit.png" alt="Edit">
+                            </button>
+                            <button class="trash">
+                                <img src="assets/delete.png" alt="Delete">
+                            </button>
+                        </div>
+                    </article>
+                    <article class="activityItem" id="activity2">
+                        <div class="bio">
+                            <h3>Title 2</h3>
+                            <p>Information 2</p>
+                            <p>Tuesday</p>
+                            <p>2024-05-28</p>
+                            <p>10:00 AM</p>
+                        </div>
+                        <div class="action">
+                            <button class="edit">
+                                <img src="assets/edit.png" alt="Edit">
+                            </button>
+                            <button class="trash">
+                                <img src="assets/delete.png" alt="Delete">
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+          </section>
+        
+      </div>
+    </div>
+
+    <div class="updateActivitySection">
+      <section id="updateForms" class="hidden">
+        <article class="form-body2">
+                <div class="form-items">
+                  <h3>Update Activity</h3>
+                  <p>Fill in the data below.</p>
+                  <form id="updateActivityForm">
+  
+                    <div class="col-md-12">
+                      <input name="title" type="text" placeholder="Judul" required>
+                    </div>
+  
+                    <div class="col-md-12">
+                      <input name="information" type="text" placeholder="information">
+                    </div>
+  
+                    <div class="col-md-12">
+                      <input name="day" type="text" placeholder="Hari" required>
+                    </div>
+                    <div class="col-md-12">
+                      <input  name="date" type="date">
+                    </div>
+                    <div class="col-md-12">
+                      <input  name="time" type="time" required>
+                    </div>
+
+                    <div class="form-check mv-up">
+                      <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" required>
+                      <label class="form-check-label">I confirm that all data are correct</label>
+                    </div>
+                    <div class="form-button mv-up">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+          </div>
+        </article>
+      </section>
+    </div>
+  <!-- <section class="radioButton">
+    <div class="inputInline">
+      <label for="inputBookIsUncomplete">Belum dibaca</label>
+      <input id="inputBookIsUncomplete" name="bookStatus" type="radio">
+    </div>
+    <div class="inputInline">
+      <label for="inputBookIsComplete">Selesai dibaca</label>
+      <input id="inputBookIsComplete" name="bookStatus" type="radio">
+    </div>
+  </section> -->
+   
+    
+    <script src="script.js"></script>
+  </body>
+</html>

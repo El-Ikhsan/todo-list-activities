@@ -2,11 +2,15 @@
   "name": "restfull-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.cjs",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
+    "start": "node src/index.cjs",
     "start:server": "node src/server.js",
-    "start:client": "node src/index.cjs",
-    "test": "jest -i"
+    "test": "jest -i",
+    "postinstall": "prisma generate"
   },
   "jest": {
     "transform": {

@@ -9,8 +9,6 @@
 
 body {
     background-color: #152733;
-    /* background-color: #7c80bd; */
-    /* background: linear-gradient(to right, #e2e2e2, #c9d6ff); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -216,6 +214,7 @@ body {
 
 .hidden {
     display: none;
+    overflow: hidden;
   }
 
 

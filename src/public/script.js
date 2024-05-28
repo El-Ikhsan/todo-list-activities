@@ -13,7 +13,7 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
   const data = Object.fromEntries(formData);
 
   try {
-    const response = await fetch('http://localhost:3000/api/users', {
+    const response = await fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
   const data = Object.fromEntries(formData);
 
   try {
-    const response = await fetch('http://localhost:3000/api/users/login', {
+    const response = await fetch('/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
 async function showUserProfile(token) {
   try {
-    const response = await fetch('http://localhost:3000/api/users/current', {
+    const response = await fetch('/api/users/current', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ document.getElementById('updateForm').addEventListener('submit', async (event) =
   const data = Object.fromEntries(formData);
 
   try {
-    const response = await fetch('http://localhost:3000/api/users/current', {
+    const response = await fetch('/api/users/current', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ logoutBtn.addEventListener('click', async () => {
   const token = sessionStorage.getItem('token'); 
 
   try {
-    const response = await fetch('http://localhost:3000/api/users/logout', {
+    const response = await fetch('/api/users/logout', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ document.getElementById('inputActivity').addEventListener('submit', async (event
   const data = Object.fromEntries(formData);
   console.log(data);
   try {
-      const response = await fetch('http://localhost:3000/api/activities', {
+      const response = await fetch('/api/activities', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ async function getActivityForm (activityId) {
   // const activityId = document.getElementById('getActivityId').value;
 
   try {
-      const response = await fetch(`http://localhost:3000/api/activities/${activityId}`, {
+      const response = await fetch(`/api/activities/${activityId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -289,7 +289,7 @@ const handleUpdateActivitySubmit = async (event) => {
   console.log(data);
 
   try {
-    const response = await fetch(`http://localhost:3000/api/activities/${activityId}`, {
+    const response = await fetch(`/api/activities/${activityId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -326,7 +326,7 @@ async function removeActivity(activityId) {
   const token = sessionStorage.getItem('token');
   
   try {
-    const response = await fetch(`http://localhost:3000/api/activities/${activityId}`, {
+    const response = await fetch(`/api/activities/${activityId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -363,7 +363,7 @@ document.getElementById('searchForm').addEventListener('submit', async (event) =
 
   try {
       const token = sessionStorage.getItem('token');
-      const response = await fetch(`http://localhost:3000/api/activities?${searchCategory}=${searchInput}`, {
+      const response = await fetch(`/api/activities?${searchCategory}=${searchInput}`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -417,7 +417,7 @@ loginBtn.addEventListener("click", () => {
 //     const data = Object.fromEntries(formData);
 //     console.log(data);
 //     try {
-//       const response = await fetch(`http://localhost:3000/api/activities/${activityId}`, {
+//       const response = await fetch(`/api/activities/${activityId}`, {
 //         method: 'PATCH',
 //         headers: {
 //           'Content-Type': 'application/json',

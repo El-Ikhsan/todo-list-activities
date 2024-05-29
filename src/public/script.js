@@ -13,7 +13,7 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
   const data = Object.fromEntries(formData);
 
   try {
-    const response = await fetch('/api/users', {
+    const response = await fetch('https://toha-todo-list-activities.vercel.app/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -26,20 +26,20 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
     }
 
     const result = await response.json();
+    alert('your account created successfully!');
     console.log(result);
   } catch (error) {
     console.error(error);
   }
 });
 
-// Event listener untuk form login
 document.getElementById('loginForm').addEventListener('submit', async (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData);
 
   try {
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('https://toha-todo-list-activities.vercel.app/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -52,6 +52,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
     }
 
     const result = await response.json();
+    alert('logged in to your account successfully!');
     const token = result.data.token;
     sessionStorage.setItem('token', token); 
     showUserProfile(token);
@@ -63,7 +64,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
 
 async function showUserProfile(token) {
   try {
-    const response = await fetch('/api/users/current', {
+    const response = await fetch('https://toha-todo-list-activities.vercel.app/api/users/current', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -78,7 +79,6 @@ async function showUserProfile(token) {
     const user = await response.json();
     console.log(user);
     userInfo.innerText = `Username: ${user.data.username} \tName: ${user.data.name}`;
-    userInfo.style.whiteSpace = 'pre';
     container.classList.add("hidden");
     userActivities.classList.remove("hidden");
   } catch (error) {
@@ -94,7 +94,7 @@ document.getElementById('updateForm').addEventListener('submit', async (event) =
   const data = Object.fromEntries(formData);
 
   try {
-    const response = await fetch('/api/users/current', {
+    const response = await fetch('https://toha-todo-list-activities.vercel.app/api/users/current', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -108,6 +108,7 @@ document.getElementById('updateForm').addEventListener('submit', async (event) =
     }
 
     const result = await response.json();
+    alert('your account updated successfully!');
     console.log(result);
     showUserProfile(token);
   } catch (error) {
@@ -115,12 +116,11 @@ document.getElementById('updateForm').addEventListener('submit', async (event) =
   }
 });
 
-// Event listener untuk tombol logout
 logoutBtn.addEventListener('click', async () => {
   const token = sessionStorage.getItem('token'); 
 
   try {
-    const response = await fetch('/api/users/logout', {
+    const response = await fetch('https://toha-todo-list-activities.vercel.app/api/users/logout', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -148,8 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// activities
-
 document.getElementById('inputActivity').addEventListener('submit', async (event) => {
   event.preventDefault();
   const token = sessionStorage.getItem('token'); 
@@ -157,7 +155,7 @@ document.getElementById('inputActivity').addEventListener('submit', async (event
   const data = Object.fromEntries(formData);
   console.log(data);
   try {
-      const response = await fetch('/api/activities', {
+      const response = await fetch('https://toha-todo-list-activities.vercel.app/api/activities', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -172,7 +170,6 @@ document.getElementById('inputActivity').addEventListener('submit', async (event
 
       const result = await response.json();
       const activityId = result.data.id;
-      // sessionStorage.setItem('activityId', activityId);
       alert('Activity created successfully!');
       console.log(activityId);
       getActivityForm(activityId);
@@ -181,14 +178,13 @@ document.getElementById('inputActivity').addEventListener('submit', async (event
       alert('Error creating activity');
   }
 });
-// JavaScript for GET Activity
+
 async function getActivityForm (activityId) {
   const token = sessionStorage.getItem('token');
 
-  // const activityId = document.getElementById('getActivityId').value;
 
   try {
-      const response = await fetch(`/api/activities/${activityId}`, {
+      const response = await fetch(`https://toha-todo-list-activities.vercel.app/api/activities/${activityId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -200,17 +196,9 @@ async function getActivityForm (activityId) {
           throw new Error('Failed to get activity');
       }
 
-      // const activities = []; 
       const result = await response.json();
-      // const data = result.data; 
-      // data.push(activities);
       const activityContainer = document.getElementById('getActivityResult');
-
       activityContainer.innerHTML = '';
-
-      // for (const activity of activities) {
-      // }
-
       const activityElement = makeActivity(result.data);
       activityContainer.appendChild(activityElement);
     
@@ -274,10 +262,7 @@ function makeActivity(activityData) {
   return container;
 }
 
-
 const updateActivityForm = document.getElementById('updateActivityForm');
-
-// Event handler untuk submit update activity
 const handleUpdateActivitySubmit = async (event) => {
   event.preventDefault();
   const token = sessionStorage.getItem("token");
@@ -289,7 +274,7 @@ const handleUpdateActivitySubmit = async (event) => {
   console.log(data);
 
   try {
-    const response = await fetch(`/api/activities/${activityId}`, {
+    const response = await fetch(`https://toha-todo-list-activities.vercel.app/api/activities/${activityId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -312,12 +297,10 @@ const handleUpdateActivitySubmit = async (event) => {
   }
 };
 
-// Fungsi untuk memperbarui activity
 const updateActivity = () => {
   userActivities.classList.add("hidden");
   updateForm.classList.remove("hidden");
 
-  // Menghapus event listener lama sebelum menambahkan yang baru
   updateActivityForm.removeEventListener('submit', handleUpdateActivitySubmit);
   updateActivityForm.addEventListener('submit', handleUpdateActivitySubmit);
 };
@@ -326,7 +309,7 @@ async function removeActivity(activityId) {
   const token = sessionStorage.getItem('token');
   
   try {
-    const response = await fetch(`/api/activities/${activityId}`, {
+    const response = await fetch(`https://toha-todo-list-activities.vercel.app/api/activities/${activityId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -341,7 +324,6 @@ async function removeActivity(activityId) {
     const result = await response.json();
     console.log(result.data);
 
-    // Menghapus elemen activity dari DOM
     const activityElement = document.getElementById(`${activityId}`);
     if (activityElement) {
       activityElement.remove();
@@ -363,7 +345,7 @@ document.getElementById('searchForm').addEventListener('submit', async (event) =
 
   try {
       const token = sessionStorage.getItem('token');
-      const response = await fetch(`/api/activities?${searchCategory}=${searchInput}`, {
+      const response = await fetch(`https://toha-todo-list-activities.vercel.app/api/activities?${searchCategory}=${searchInput}`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -393,95 +375,10 @@ function displaySearchResult(activities) {
   });
 }
 
-// javascript for css
-
 registerBtn.addEventListener("click", () => {
   container.classList.add("active");
 });
 
-
 loginBtn.addEventListener("click", () => {
   container.classList.remove("active");
 });
-
-
-// const updateActivity =  () => {
-//   userActivities.classList.add("hidden");
-//   updateForm.classList.remove("hidden");
-
-//   document.getElementById('updateActivityForm').addEventListener('submit', async (event) => {
-//     event.preventDefault();
-//     const token = sessionStorage.getItem("token");
-//     const activityId = sessionStorage.getItem("activityId")
-//     const formData = new FormData(event.target);
-//     const data = Object.fromEntries(formData);
-//     console.log(data);
-//     try {
-//       const response = await fetch(`/api/activities/${activityId}`, {
-//         method: 'PATCH',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'authorization': token
-//         },
-//         body: JSON.stringify(data)
-//     });
-  
-//     if (!response.ok) {
-//         throw new Error('Failed to get activity');
-//     }
-  
-//     const result = await response.json();
-//     userActivities.classList.remove("hidden");
-//     updateForm.classList.add("hidden");
-//     getActivityForm(result.data.id);
-//     } catch (error) {
-//       console.log(error);
-//     }
-  
-//   });
-// }
-
-// const updateForms = document.getElementById('updateActivityForm');
-
-// const updateActivity = () => {
-
-//   userActivities.classList.add("hidden");
-//   updateForms.classList.remove("hidden");
-
-//   // Menghapus event listener lama sebelum menambahkan yang baru
-//   updateForm.removeEventListener('submit', submitHandler);
-
-//   const submitHandler = async (event) => {
-//     event.preventDefault();
-//     const token = sessionStorage.getItem("token");
-//     const activityId = sessionStorage.getItem("activityId");
-//     const formData = new FormData(event.target);
-//     const data = Object.fromEntries(formData);
-//     console.log(data);
-
-//     try {
-//       const response = await fetch(`http://localhost:3000/api/activities/${activityId}`, {
-//         method: 'PATCH',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'authorization': token
-//         },
-//         body: JSON.stringify(data)
-//       });
-
-//       if (!response.ok) {
-//         throw new Error('Failed to update activity');
-//       }
-
-//       const result = await response.json();
-//       userActivities.classList.remove("hidden");
-//       updateForms.classList.add("hidden");
-//       getActivityForm(result.data.id);
-
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   updateForm.addEventListener('submit', submitHandler);
-// };

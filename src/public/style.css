@@ -510,6 +510,7 @@ body {
     outline: none;
     border: 0px;
     box-shadow: none;
+    cursor: pointer;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active{

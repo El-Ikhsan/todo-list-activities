@@ -238,7 +238,7 @@ describe("GET /api/activities", function() {
         .get("/api/activities")
         .set("authorization", "test")
         .query({
-            day: "hari5"
+            day: "Hari5"
         });
 
         logger.info(result.body);

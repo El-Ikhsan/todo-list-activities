@@ -121,7 +121,8 @@ const search = async (user, request) => {
     if (request.title) {
         filters.push({
             title: {
-                contains: request.title
+                contains: request.title,
+                mode: 'insensitive',
             }
         });
     }
@@ -129,7 +130,8 @@ const search = async (user, request) => {
     if (request.day) {
         filters.push({
             day: {
-                contains: request.day
+                contains: request.day,
+                mode: 'insensitive',
             }
         });
     }

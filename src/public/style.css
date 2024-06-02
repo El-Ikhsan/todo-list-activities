@@ -624,6 +624,9 @@ body {
     body {
         height: 300vh;
     }
+    .container {
+        margin-top: -860px;
+    }
     .containerActivities{
         padding-top: 200px;
     }
@@ -660,6 +663,9 @@ body {
 }
 
 @media (max-width: 500px) {
+    .container {
+        margin-top: -880px;
+    }
     .containerActivities{
         padding: 20px;
         padding-top: 200px;
